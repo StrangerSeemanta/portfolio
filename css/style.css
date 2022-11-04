@@ -24,7 +24,7 @@ body{
 
 body.dark {   
     
-    background:url(../img/stars.png) ,linear-gradient(#2b1055, #6f8fd4);
+    background:url(/img/stars.png) ,linear-gradient(#2b1055, #6f8fd4);
     background-repeat: no-repeat;
     background-origin: border-box;
     background-size: cover;
@@ -44,7 +44,7 @@ body.dark::after {
     opacity: 0.4;
 }
 body.light{
-    background: url(../img/birds2.png), url(../img/birds.png), url(../img/birds3.png), linear-gradient(#e15605, rgb(254, 195, 19));
+    background: url(/img/birds2.png), url(/img/birds.png), url(/img/birds3.png), linear-gradient(#e15605, rgb(254, 195, 19));
     background-repeat:no-repeat;
     background-attachment: fixed;
     background-size: 280px, 150px, 200px,auto;
