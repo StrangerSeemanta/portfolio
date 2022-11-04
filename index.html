@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- custom css cdn link for sliding switch -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,200,1,200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Portfolio</title>
+</head>
+
+<body class="dark">
+    <!-- Navigation__Part -->
+
+    <header>
+        <a href="" class="logo">Logo</a>
+
+
+
+        <nav>
+            <ul>
+                <li><a href="" class="nav-link active">Home</a></li>
+                <li><a href="" class="nav-link">About Me</a></li>
+                <li><a href="" class="nav-link">Works</a></li>
+                <li><a href="pages/contact.html" class="nav-link">Contact Me</a></li>
+                <li><span class="material-symbols-outlined light"">sunny</span>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+        <section id="main">
+            <div class="name">
+                <h1 class="myname">Hi I am Shuvo Sarker</h1>
+                <h2 class="designation" style="font-size: 0.9em;"><i>Front-End Web developer, UI/UX designer</i></h2>
+            </div>
+
+        </section>
+
+        <section></section>
+
+
+    </main>
+
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+    integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer src="js/main.js"></script>
+<script>
+    $(window).scroll(function(){
+        if (window.scrollY > 10 ){
+            $('h1.myname').css('transform','translateY(0px)')
+        }
+        if(window.scrollY > 50){
+            $('h2.designation').css('transform','translateY(0px)')
+        }
+        if(window.scrollY < 50){
+            $('h2.designation').css('transform','translateY(300px)')
+        }
+        if (window.scrollY < 10 ){
+            $('h1.myname').css('transform','translateY(300px)')
+        }
+    })
+</script>
+
+</html>
