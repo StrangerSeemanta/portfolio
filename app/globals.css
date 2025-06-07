@@ -99,8 +99,8 @@
 }
 
 .glass-card {
-  backdrop-filter: blur(15px);
-  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  background: rgba(194, 194, 194, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }

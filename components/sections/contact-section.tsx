@@ -16,20 +16,20 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    value: 'shuvo.sarker@example.com',
-    href: 'mailto:shuvo.sarker@example.com',
+    value: 'ssworkmail22@example.com',
+    href: 'mailto:ssworkmail22@example.com',
   },
   {
     icon: Phone,
     title: 'Phone',
-    value: '+1 (555) 123-4567',
-    href: 'tel:+15551234567',
+    value: '+8801336601546',
+    href: 'tel:+8801336601546',
   },
   {
     icon: MapPin,
     title: 'Location',
-    value: 'San Francisco, CA',
-    href: 'https://maps.google.com/?q=San+Francisco,+CA',
+    value: 'Bangladesh',
+    href: 'https://maps.google.com/?q=Bangladesh',
   },
 ];
 

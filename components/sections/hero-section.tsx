@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
-import { TypeAnimation } from 'react-type-animation';
-import { Button } from '@/components/ui/button';
-import { ParticleField } from '@/components/particle-field';
-import { TechStackIcons } from '@/components/tech-stack-icons';
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { ChevronDown, Github, Linkedin, Mail } from "lucide-react";
+import { TypeAnimation } from "react-type-animation";
+import { Button } from "@/components/ui/button";
+import { ParticleField } from "@/components/particle-field";
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false);
@@ -18,9 +17,12 @@ export function HeroSection() {
   if (!mounted) return null;
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-[100px]">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-[100px]"
+    >
       <ParticleField />
-      
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -42,6 +44,7 @@ export function HeroSection() {
                 className="w-full h-full rounded-full object-cover"
               />
             </div>
+            
           </motion.div>
 
           {/* Name and Title */}
@@ -54,7 +57,7 @@ export function HeroSection() {
             >
               <span className="gradient-text">Shuvo Sarker</span>
             </motion.h1>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -63,13 +66,13 @@ export function HeroSection() {
             >
               <TypeAnimation
                 sequence={[
-                  'Full-Stack Developer',
+                  "Full-Stack Developer",
                   2000,
-                  'MERN Stack Expert',
+                  "MERN Stack Expert",
                   2000,
-                  'React Specialist',
+                  "React Specialist",
                   2000,
-                  'Node.js Developer',
+                  "Node.js Developer",
                   2000,
                 ]}
                 wrapper="span"
@@ -86,8 +89,9 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
           >
-            Passionate about creating scalable web applications with modern technologies. 
-            Specializing in React, Node.js, and cloud-native solutions that drive business growth.
+            Passionate about creating scalable web applications with modern
+            technologies. Specializing in React, Node.js, and cloud-native
+            solutions that drive business growth.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -100,7 +104,11 @@ export function HeroSection() {
             <Button
               size="lg"
               className="bg-gradient-to-r from-[#00b4d8] to-[#7209b7] hover:from-[#00a2c7] hover:to-[#6508a6] text-white px-8 py-3 text-lg hover-glow"
-              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() =>
+                document
+                  .getElementById("projects")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               View My Work
             </Button>
@@ -108,7 +116,11 @@ export function HeroSection() {
               size="lg"
               variant="outline"
               className="border-[#00b4d8] text-[#00b4d8] hover:bg-[#00b4d8] hover:text-white px-8 py-3 text-lg"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() =>
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               Get In Touch
             </Button>
@@ -122,9 +134,13 @@ export function HeroSection() {
             className="flex justify-center space-x-6 pt-8"
           >
             {[
-              { icon: Github, href: 'https://github.com', label: 'GitHub' },
-              { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-              { icon: Mail, href: 'mailto:shuvo@example.com', label: 'Email' },
+              { icon: Github, href: "https://github.com", label: "GitHub" },
+              {
+                icon: Linkedin,
+                href: "https://linkedin.com",
+                label: "LinkedIn",
+              },
+              { icon: Mail, href: "mailto:shuvo@example.com", label: "Email" },
             ].map(({ icon: Icon, href, label }) => (
               <motion.a
                 key={label}
@@ -140,16 +156,6 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Floating Tech Stack Icons - Bottom Right */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-20 right-8 z-20"
-      >
-        <TechStackIcons />
-      </motion.div>
 
       {/* Scroll Indicator */}
       <motion.div

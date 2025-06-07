@@ -57,29 +57,29 @@ const projects = [
       challenges: 'Handled real-time data synchronization across multiple devices and locations.',
     }
   },
-  {
-    id: 3,
-    title: 'Task Management App',
-    category: 'Frontend',
-    description: 'Modern task management application with drag-and-drop functionality, team collaboration, and progress tracking.',
-    image: 'https://images.pexels.com/photos/1496192/pexels-photo-1496192.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    tech: ['React', 'TypeScript', 'Tailwind CSS', 'React DnD'],
-    liveUrl: 'https://demo-tasks.com',
-    githubUrl: 'https://github.com/shuvosarker/task-manager',
-    featured: false,
-    details: {
-      overview: 'Created an intuitive task management application with modern UI/UX design.',
-      features: [
-        'Drag and drop task organization',
-        'Team collaboration tools',
-        'Progress tracking and analytics',
-        'Deadline management',
-        'File attachment support',
-        'Dark/light theme toggle'
-      ],
-      challenges: 'Implemented complex drag-and-drop interactions while maintaining performance.',
-    }
-  },
+  // {
+  //   id: 3,
+  //   title: 'Task Management App',
+  //   category: 'Frontend',
+  //   description: 'Modern task management application with drag-and-drop functionality, team collaboration, and progress tracking.',
+  //   image: 'https://images.pexels.com/photos/1496192/pexels-photo-1496192.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+  //   tech: ['React', 'TypeScript', 'Tailwind CSS', 'React DnD'],
+  //   liveUrl: 'https://demo-tasks.com',
+  //   githubUrl: 'https://github.com/shuvosarker/task-manager',
+  //   featured: false,
+  //   details: {
+  //     overview: 'Created an intuitive task management application with modern UI/UX design.',
+  //     features: [
+  //       'Drag and drop task organization',
+  //       'Team collaboration tools',
+  //       'Progress tracking and analytics',
+  //       'Deadline management',
+  //       'File attachment support',
+  //       'Dark/light theme toggle'
+  //     ],
+  //     challenges: 'Implemented complex drag-and-drop interactions while maintaining performance.',
+  //   }
+  // },
   {
     id: 4,
     title: 'Weather Dashboard',
