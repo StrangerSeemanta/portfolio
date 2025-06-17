@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Calendar, MapPin, Coffee, Heart } from "lucide-react";
+import { Calendar, MapPin, Coffee, Heart, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ParticleField } from "@/components/particle-field";
@@ -125,7 +125,8 @@ export function AboutSection() {
                     understanding of modern development practices, cloud technologies, and user 
                     experience design.`}
                     </p>
-                    <Button className="bg-gradient-to-r from-[#00b4d8] to-[#7209b7] hover:from-[#00a2c7] hover:to-[#6508a6]">
+                    <Button className="text-white bg-gradient-to-r from-[#00b4d8] to-[#7209b7] hover:from-[#00a2c7] hover:to-[#6508a6]">
+                      <Download className="w-4 h-4 mr-2" />
                       Download Resume
                     </Button>
                   </div>

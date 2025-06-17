@@ -33,7 +33,7 @@ export function Footer() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-gray-400 text-sm"
             >
-              © 2024 Shuvo Sarker. All rights reserved.
+              © 2025 Shuvo Sarker. All rights reserved.
             </motion.p>
           </div>
 

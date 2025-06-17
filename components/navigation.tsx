@@ -38,7 +38,7 @@ export function Navigation() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[99999999] transition-all duration-300 ${
         scrolled ? 'glass-card backdrop-blur-md' : ''
       }`}
     >
@@ -67,13 +67,12 @@ export function Navigation() {
                   {item.name}
                 </motion.button>
               ))}
-              <Button
+              {/* <Button
                 size="sm"
-                className="ml-4 bg-gradient-to-r from-[#00b4d8] to-[#7209b7] hover:from-[#00a2c7] hover:to-[#6508a6]"
+                className="ml-4 bg-gradient-to-r from-[#00b4d8] to-[#7209b7] hover:from-[#00a2c7] hover:to-[#6508a6] text-white"
               >
-                <Download className="w-4 h-4 mr-2" />
                 Resume
-              </Button>
+              </Button> */}
             </div>
           </div>
 
@@ -109,13 +108,13 @@ export function Navigation() {
                   {item.name}
                 </button>
               ))}
-              <Button
+              {/* <Button
                 size="sm"
                 className="mt-4 w-full bg-gradient-to-r from-[#00b4d8] to-[#7209b7]"
               >
                 <Download className="w-4 h-4 mr-2" />
                 Download Resume
-              </Button>
+              </Button> */}
             </div>
           </motion.div>
         )}

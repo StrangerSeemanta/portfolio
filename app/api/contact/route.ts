@@ -1,8 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { MongoClient } from 'mongodb';
-
-const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017';
-const client = new MongoClient(uri);
+import { sendMessage } from "@/lib/db/sendMessage";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,7 +9,7 @@ export async function POST(request: NextRequest) {
     // Validate required fields
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
-        { error: 'All fields are required' },
+        { error: "All fields are required" },
         { status: 400 }
       );
     }
@@ -21,41 +18,32 @@ export async function POST(request: NextRequest) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
-        { error: 'Invalid email format' },
+        { error: "Invalid email format" },
         { status: 400 }
       );
     }
 
-    // Connect to MongoDB
-    await client.connect();
-    const db = client.db('portfolio');
-    const collection = db.collection('messages');
-
-    // Insert the message
-    const result = await collection.insertOne({
+    // Insert the message res
+    const result = await sendMessage({
       name,
       email,
       subject,
       message,
       createdAt: new Date(),
-      read: false,
     });
 
     return NextResponse.json(
-      { 
-        message: 'Message sent successfully',
-        id: result.insertedId 
+      {
+        message: "Message sent successfully",
+        id: result.insertedId,
       },
       { status: 200 }
     );
-
   } catch (error) {
-    console.error('Error saving message:', error);
+    console.error("Error saving message:", error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: "Internal server error" },
       { status: 500 }
     );
-  } finally {
-    await client.close();
   }
 }

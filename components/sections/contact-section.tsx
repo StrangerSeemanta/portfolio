@@ -1,35 +1,35 @@
 "use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Send, Mail, Phone, MapPin, Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { toast } from 'sonner';
-import { ParticleField } from '@/components/particle-field';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Send, Mail, Phone, MapPin, Loader2, Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
+import { ParticleField } from "@/components/particle-field";
 
 const contactInfo = [
   {
     icon: Mail,
-    title: 'Email',
-    value: 'ssworkmail22@example.com',
-    href: 'mailto:ssworkmail22@example.com',
+    title: "Email",
+    value: "ssworkmail22@example.com",
+    href: "mailto:ssworkmail22@example.com",
   },
   {
     icon: Phone,
-    title: 'Phone',
-    value: '+8801336601546',
-    href: 'tel:+8801336601546',
+    title: "Phone",
+    value: "+8801336601546",
+    href: "tel:+8801336601546",
   },
   {
     icon: MapPin,
-    title: 'Location',
-    value: 'Bangladesh',
-    href: 'https://maps.google.com/?q=Bangladesh',
+    title: "Location",
+    value: "Bangladesh",
+    href: "https://maps.google.com/?q=Bangladesh",
   },
 ];
 
@@ -40,14 +40,16 @@ export function ContactSection() {
   });
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -59,29 +61,33 @@ export function ContactSection() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
-        toast.success('Message sent successfully! I\'ll get back to you soon.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        toast.success("Message sent successfully! I'll get back to you soon.");
+        setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        throw new Error('Failed to send message');
+        throw new Error("Failed to send message");
       }
     } catch (error) {
-      toast.error('Failed to send message. Please try again.');
+      toast.error("Failed to send message. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden" ref={ref}>
+    <section
+      id="contact"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      ref={ref}
+    >
       <ParticleField />
       <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
@@ -90,15 +96,51 @@ export function ContactSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-            Let's Work Together
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text py-2">
+            {`Let's Work Together`}{" "}
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            I'm always interested in new opportunities and exciting projects. 
-            Let's discuss how we can bring your ideas to life.
+            {` I'm always interested in new opportunities and exciting projects. 
+            Let's discuss how we can bring your ideas to life.`}
           </p>
         </motion.div>
-
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className="pt-8 mb-16  rounded-xl"
+        >
+          <h3 className="text-3xl font-bold mb-6 gradient-text">
+            Available For
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              "Full-time opportunities",
+              "Freelance projects",
+              "Consulting & mentoring",
+              "Open source collaborations",
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
+                className="glass-card p-4 rounded-xl hover:scale-105 transition-all duration-300 group"
+              >
+                <div className="flex items-center space-x-3">
+                  <div
+                    className="w-3 h-3 bg-gradient-to-r from-[#00b4d8] to-[#7209b7] rounded-full 
+                    group-hover:scale-125 transition-transform duration-300"
+                  />
+                  <span className="text-white group-hover:text-[#00b4d8] transition-colors">
+                    {item}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+        {/* Email & Form */}
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <motion.div
@@ -108,13 +150,13 @@ export function ContactSection() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">
+              <h3 className="text-3xl font-bold mb-6 gradient-text">
                 Get In Touch
               </h3>
-              <p className="text-gray-400 mb-8">
-                Feel free to reach out for collaborations, job opportunities, 
-                or just to say hello. I'm always excited to connect with fellow 
-                developers and potential clients.
+              <p className="text-gray-400 mb-8 leading-relaxed">
+                {`Feel free to reach out for collaborations, job opportunities, or
+              just to say hello. I'm always excited to connect with fellow
+              developers and potential clients.`}
               </p>
             </div>
 
@@ -123,42 +165,27 @@ export function ContactSection() {
                 <motion.a
                   key={info.title}
                   href={info.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  className="flex items-center space-x-4 p-4 glass-card rounded-lg hover-glow transition-all duration-300 group"
+                  className="flex items-center space-x-4 p-6 glass-card rounded-xl hover-glow transition-all duration-300 group hover:scale-105"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-[#00b4d8] to-[#7209b7] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <info.icon className="w-6 h-6 text-white" />
+                  <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-r from-[#00b4d8] to-[#7209b7] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <info.icon className="w-7 h-7 text-white" />
                   </div>
-                  <div>
-                    <h4 className="text-white font-semibold">
+                  <div className="flex-1">
+                    <h4 className="text-lg font-semibold text-white mb-1">
                       {info.title}
                     </h4>
-                    <p className="text-gray-400">
+                    <p className="text-gray-400 hover:text-[#00b4d8] transition-colors">
                       {info.value}
                     </p>
                   </div>
                 </motion.a>
               ))}
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              className="pt-8"
-            >
-              <h4 className="text-white font-semibold mb-4">
-                Available for:
-              </h4>
-              <div className="space-y-2 text-gray-400">
-                <p>• Full-time opportunities</p>
-                <p>• Freelance projects</p>
-                <p>• Consulting & mentoring</p>
-                <p>• Open source collaborations</p>
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* Contact Form */}
@@ -168,6 +195,15 @@ export function ContactSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Card className="glass-card border-0">
+              <CardHeader>
+                <div className="flex justify-between items-center">
+                  {" "}
+                  <h3 className="text-3xl font-bold flex  gradient-text">
+                    Send Me A Message{" "}
+                  </h3>{" "}
+                  <Heart className="w-8 ml-3 h-8 text-red-500 fill-current" />
+                </div>
+              </CardHeader>
               <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
@@ -201,7 +237,7 @@ export function ContactSection() {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="subject" className="text-white">
                       Subject *
@@ -216,7 +252,7 @@ export function ContactSection() {
                       placeholder="What's this about?"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="message" className="text-white">
                       Message *
@@ -232,7 +268,7 @@ export function ContactSection() {
                       placeholder="Tell me about your project or how I can help..."
                     />
                   </div>
-                  
+
                   <Button
                     type="submit"
                     disabled={isSubmitting}
