@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import ImageUrl from "@/public/headshot_min.png"
 function ProfileImage() {
   return (
     <>
@@ -11,12 +12,12 @@ function ProfileImage() {
         className="relative mx-auto w-40 h-40 mb-4"
       >
         <div className="w-full h-full rounded-full glass-card p-2">
-          {/* "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" */}
           <Image
             width={192}
             height={192}
-            src={"/pp.png"}
+            src={ImageUrl}
             alt="Shuvo Sarker"
+            priority={true}
             className="w-full h-full rounded-full object-cover grayscale"
           />
         </div>
