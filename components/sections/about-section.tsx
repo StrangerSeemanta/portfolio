@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { Calendar, MapPin, Coffee, Heart, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ParticleField } from "@/components/particle-field";
+import { ParticleField } from "@/components/particleField";
 
 const timelineEvents = [
   {

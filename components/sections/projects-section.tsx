@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-import { ParticleField } from "@/components/particle-field";
 import Image from "next/image";
 import ProjectDialog from "../projectDialog";
 import Link from "next/link";

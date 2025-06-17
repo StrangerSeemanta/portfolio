@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { ParticleField } from "@/components/particle-field";
+import { ParticleField } from "@/components/particleField";
 
 const contactInfo = [
   {

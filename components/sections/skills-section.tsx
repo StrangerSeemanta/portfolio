@@ -3,9 +3,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { ParticleField } from "@/components/particle-field";
+import { ParticleField } from "@/components/particleField";
 import { TechStackIcons } from "../tech-stack-icons";
 
 const skillCategories = [
@@ -185,7 +184,7 @@ export function SkillsSection() {
                     key={tech}
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{once:true}}
+                    viewport={{ once: true }}
                     transition={{
                       duration: 0.5,
                       delay: 0.8 + index * 0.1,

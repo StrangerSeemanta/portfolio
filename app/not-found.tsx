@@ -1,4 +1,4 @@
-import { ParticleField } from "@/components/particle-field";
+import { ParticleField } from "@/components/particleField";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
