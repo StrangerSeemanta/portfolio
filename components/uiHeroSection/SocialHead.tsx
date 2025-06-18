@@ -26,10 +26,10 @@ function SocialHead({ label, href }: { label: string; href: string }) {
       href={href}
       whileHover={{ scale: 1.2, rotate: 5 }}
       whileTap={{ scale: 0.9 }}
-      className="p-5 glass-card rounded-full hover-glow transition-all duration-300"
+      className="p-5 glass-card rounded-full group hover-glow transition-all duration-300"
       aria-label={label}
     >
-      <Icon className="w-10 h-10 text-gray-300 hover:text-[#00b4d8]" />
+      <Icon className="w-10 h-10 text-gray-300 transition-all duration-300 group-hover:text-[#00b4d8]" />
     </motion.a>
   );
 }
