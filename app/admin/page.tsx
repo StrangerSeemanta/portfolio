@@ -2,11 +2,16 @@
 
 import { Badge } from "@/components/ui/badge";
 import { fetchProjects } from "@/lib/db/fetchProjects"; // your existing function
+import { ProjectType } from "@/lib/db/projectProps";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function AdminDashboard() {
-  const projects = await fetchProjects();
+export async function getServerSideProps(){
+    const projects = await fetchProjects();
+    return {props:{projects}}
+}
+
+export default async function AdminDashboard({projects}:{projects:ProjectType[]}) {
 
   return (
     <section className="text-black bg-white">
