@@ -3,10 +3,11 @@ import BackButton from "@/components/BackButton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
 function ReportPage() {
   const searchParams = useSearchParams();
+  
   return (
     <section className="flex flex-col items-center justify-center min-h-screen p-6 bg-gradient-to-br from-green-100 via-white to-gray-100 text-black">
       <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full flex flex-col items-center">
@@ -76,4 +77,10 @@ function ReportPage() {
   );
 }
 
-export default ReportPage;
+const ReportPageWrapper = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <ReportPage />
+  </Suspense>
+);
+
+export default ReportPageWrapper;
