@@ -1,9 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-import Drag from "@/components/custom-cursor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -193,21 +191,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <Drag />
-          {/* <ScrollIndicator /> */}
+               
           <div className="min-h-screen bg-[#0a0a0a] grid-pattern">
             {children}
           </div>
           <Toaster />
-        </ThemeProvider>
       </body>
     </html>
   );

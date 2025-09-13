@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { frame, motion, useMotionValue, useSpring } from "framer-motion";
 import { RefObject, useEffect, useRef, useState } from "react";
 
-export default function Drag() {
+export default function CustomCursor() {
   const ref = useRef<HTMLDivElement>(null);
   const { x, y } = useFollowPointer(ref);
 

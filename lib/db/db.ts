@@ -24,26 +24,4 @@ export function baseToHexId(base64string: string) {
   const hexString = decodedBytes.toString("hex");
   return hexString;
 }
-export async function getUserByEmail(__email__: string) {
-  try {
-    const usersCollection = await getCollection("CombinatorDB", "users");
 
-    const userDocument = await usersCollection.findOne({ email: __email__ });
-    if (userDocument) return userDocument;
-    return false;
-  } catch (error) {
-    throw new Error("Unacceptable User Existance: " + error);
-  }
-}
-export async function saveUserInfoToDb(data: unknown) {
-  if (typeof data !== "object" || data === null) {
-    throw new Error("Invalid data: must be a non-null object");
-  }
-  try {
-    const usersCollection = await getCollection("CombinatorDB", "users");
-    const result = await usersCollection.insertOne(data);
-    return result.insertedId;
-  } catch (error) {
-    throw new Error("Error Saving User Info: " + error);
-  }
-}

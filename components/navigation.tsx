@@ -3,11 +3,11 @@ import Link from "next/link";
 import MobileMenuButton from "./MobileMenuButton";
 
 const navItems = [
-  { name: "Home", href: "#hero" },
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/#hero" },
+  { name: "About", href: "/#about" },
+  { name: "Projects", href: "/showcase" },
+  { name: "Skills", href: "/#skills" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export function Navigation() {

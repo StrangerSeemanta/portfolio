@@ -1,6 +1,6 @@
 {
   "name": "portfolio-website",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -41,6 +41,7 @@
     "@types/node": "20.6.2",
     "@types/react": "19.1.6",
     "@types/react-dom": "19.1.6",
+    "@vercel/blob": "^1.1.1",
     "autoprefixer": "10.4.15",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

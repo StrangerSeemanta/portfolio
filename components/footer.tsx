@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Heart, Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import BorderLine from './BorderLine';
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com', label: 'GitHub' },
@@ -77,13 +78,7 @@ export function Footer() {
           </motion.div>
         </div>
 
-        {/* Bottom Border */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="mt-8 h-px bg-gradient-to-r from-transparent via-[#00b4d8] to-transparent"
-        />
+       <BorderLine/>
       </div>
     </footer>
   );

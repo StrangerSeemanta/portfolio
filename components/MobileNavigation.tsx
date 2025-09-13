@@ -5,15 +5,14 @@ import Link from "next/link";
 // It can be expanded with links, buttons, or other interactive elements as needed.
 import React from "react";
 
-function MobileNavigation({isOpen}: { isOpen: boolean }) {
-  
+function MobileNavigation({ isOpen }: { isOpen: boolean }) {
   const navItems = React.useMemo(
     () => [
-      { name: "Home", href: "#hero" },
-      { name: "About", href: "#about" },
-      { name: "Projects", href: "#projects" },
-      { name: "Skills", href: "#skills" },
-      { name: "Contact", href: "#contact" },
+      { name: "Home", href: "/#hero" },
+      { name: "About", href: "/#about" },
+      { name: "Projects", href: "/showcase" },
+      { name: "Skills", href: "/#skills" },
+      { name: "Contact", href: "/#contact" },
     ],
     []
   );
@@ -40,17 +39,17 @@ function MobileNavigation({isOpen}: { isOpen: boolean }) {
             rgba(31,41,55,0.85) 50%,
             rgba(31,41,55,0.9) 100%
               )
-            `
+            `,
           }}
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <Link
-            key={item.name}
-            href={item.href}
-            className="text-gray-100 hover:text-sky-400 block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200"
+                key={item.name}
+                href={item.href}
+                className="text-gray-100 hover:text-sky-400 block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200"
               >
-            {item.name}
+                {item.name}
               </Link>
             ))}
             {/* <Button

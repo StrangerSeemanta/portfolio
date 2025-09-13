@@ -1,19 +1,17 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
-import { ExternalLink, Github, Filter, ExternalLinkIcon } from "lucide-react";
+import { fetchProjectsActions } from "../actions/fetchProjectsAction";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
 import Image from "next/image";
-import ProjectDialog from "../projectDialog";
-import Link from "next/link";
-import { fetchProjectsActions } from "@/app/actions/fetchProjectsAction";
+import { ExternalLink, Github, Filter, ExternalLinkIcon } from "lucide-react";
+import ProjectDialog from "@/components/projectDialog";
 import { ProjectType } from "@/lib/db/projectProps";
 
 const categories = ["All", "Full-Stack", "Frontend", "Backend"];
 
-export function ProjectsSection() {
+function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isFetching, setIsFetching] = useState(true);
   const [projects, setProjects] = useState<ProjectType[] | null>(null);
@@ -56,90 +54,58 @@ export function ProjectsSection() {
     [projects]
   );
   return (
-    <section id="projects" className="relative py-20 px-4 sm:px-6 lg:px-8 ">
+    <>
+      <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <Filter className="w-5 h-5 text-gray-400 self-center " />
+        {categories.map((category, idx) => (
+          <Button
+            type="submit"
+            key={category + String(idx)}
+            variant={selectedCategory === category ? "default" : "outline"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleFilterProjects(category);
+            }}
+            className={`${
+              selectedCategory === category
+                ? "bg-gradient-to-r from-[#00b4d8] to-[#7209b7] text-white"
+                : "border-[#00b4d8] text-[#00b4d8] hover:bg-[#00b4d8] hover:text-white"
+            }`}
+          >
+            {category}
+          </Button>
+        ))}
+      </div>
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div
-          // initial={{ opacity: 0, y: 30 }}
-          // animate={inView ? { opacity: 1, y: 0 } : {}}
-          // transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-            Featured Projects
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            A showcase of my recent work, demonstrating expertise in full-stack
-            development and modern web technologies.
-          </p>
-        </div>
-        {/* Show All Works */}
-        <div className="w-full my-12 flex justify-center items-center">
-          <Link href={"showcase"}>
-            <Button size={"lg"} variant={"themed_glowing"}>
-              View All Works <ExternalLinkIcon className="ml-3" />
-            </Button>
-          </Link>
-        </div>
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          <Filter className="w-5 h-5 text-gray-400 self-center mr-2" />
-          {categories.map((category,idx) => (
-            <Button
-              type="submit"
-              key={category+String(idx)}
-              variant={selectedCategory === category ? "default" : "outline"}
-              onClick={(e) => {
-                e.preventDefault();
-                handleFilterProjects(category);
-              }}
-              className={`${
-                selectedCategory === category
-                  ? "bg-gradient-to-r from-[#00b4d8] to-[#7209b7] text-white"
-                  : "border-[#00b4d8] text-[#00b4d8] hover:bg-[#00b4d8] hover:text-white"
-              }`}
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
-
-        {/* Projects Grid */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 md:px-28 gap-6 auto-rows-auto"
-          // initial={{ opacity: 0 }}
-          // animate={inView ? { opacity: 1 } : {}}
-          // transition={{ staggerChildren: 0.2 }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 md:px-28 gap-6 auto-rows-auto ">
+          {/* Projects will be rendered here */}
           {isFetching ? (
             <div className="col-span-2 text-center py-10">
               <p className="text-gray-400">Loading projects...</p>
             </div>
           ) : filteredProjects && filteredProjects.length > 0 ? (
             filteredProjects.map((project, index) => (
-              <div
-                key={project.liveUrl+String(index)}
-              
-              >
+              <div key={project.id + String(index)}>
                 <Card className="project-card glass-card border-0 h-full hover:scale-[1.02] transition-transform duration-300 hover-glow">
                   <CardContent className="p-0 flex flex-col h-full">
-                   {project.image && (
-                     <div className="relative">
-                      <div className="w-full h-[200px] overflow-hidden rounded-t-lg">
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover rounded-t-lg"
-                          priority
-                        />
+                    {project.image && (
+                      <div className="relative">
+                        <div className="w-full h-[200px] overflow-hidden rounded-t-lg">
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover rounded-t-lg"
+                            priority
+                          />
+                        </div>
+                        {project.featured && (
+                          <Badge className="absolute top-3 left-3 bg-gradient-to-r from-[#00b4d8] to-[#7209b7] animate-pulse">
+                            Featured
+                          </Badge>
+                        )}
                       </div>
-                      {project.featured && (
-                        <Badge className="absolute top-3 left-3 bg-gradient-to-r from-[#00b4d8] to-[#7209b7] animate-pulse">
-                          Featured
-                        </Badge>
-                      )}
-                    </div>
                     )}
 
                     <div className="p-5 space-y-4 flex-1 flex flex-col">
@@ -220,6 +186,8 @@ export function ProjectsSection() {
           )}
         </div>
       </div>
-    </section>
+    </>
   );
 }
+
+export default Projects;

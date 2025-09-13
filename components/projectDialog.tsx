@@ -8,10 +8,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ProjectType } from "./sections/projects-section";
 import Image from "next/image";
 import { Badge } from "./ui/badge";
 import { ExternalLink, Github } from "lucide-react";
+import { ProjectType } from "@/lib/db/projectProps";
 
 function ProjectDialog({
   project,

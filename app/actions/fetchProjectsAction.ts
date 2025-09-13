@@ -1,20 +1,34 @@
 "use server";
-import { ProjectType } from "@/components/sections/projects-section";
 import { getCollection } from "@/lib/db/db";
-
-export async function fetchProjectsActions() {
+import { ProjectType } from "@/lib/db/projectProps";
+import Common_thumb from "@/public/common_thumb.jpg";
+export async function fetchProjectsActions(): Promise<ProjectType[]> {
   try {
     const collection = await getCollection("projectDB", "projects");
-    const projects = await collection.find({}).toArray();
-    const response = projects.map((project) => ({
-      id: project._id.toString("base64"),
+    
+    const projects = (await collection
+      .find({})
+      .toArray()) as unknown as ProjectType[];
+
+    return projects.map((project) => ({
       ...project,
-      _id: {
-        hex: project._id.toString("hex"),
-        base64: project._id.toString("base64"),
+      id: project.id,
+      _id:
+        typeof project._id === "string" ? project._id : project._id.toString(),
+      details: {
+        ...project.details,
+        features: project.details.features || [],
+        challenges: project.details.challenges || "No Challanges Listed",
       },
-    })) as unknown as ProjectType[];
-    return response;
+      image: project.image || Common_thumb.src,
+      tech: project.tech || [],
+      liveUrl: project.liveUrl || "",
+      githubUrl: project.githubUrl || "",
+      featured: project.featured || false,
+      category: project.category || "Uncategorized",
+      description: project.description || "No description available",
+      title: project.title || "Untitled Project",
+    }));
   } catch (error) {
     throw new Error("Failed to fetch projects: " + error);
   }

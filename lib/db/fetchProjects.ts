@@ -1,14 +1,31 @@
-import { ProjectType } from "@/components/sections/projects-section";
 import { getCollection } from "@/lib/db/db";
+import { ProjectType } from "./projectProps";
 
-export async function fetchProjects() {
+export async function fetchProjects(): Promise<ProjectType[]> {
   try {
     const collection = await getCollection("projectDB", "projects");
-    const projects = await collection.find({}).toArray();
+    const projects = (await collection
+      .find({})
+      .toArray()) as unknown as ProjectType[];
+
     return projects.map((project) => ({
-      id: project._id.toString("base64"),
       ...project,
-    })) as unknown as ProjectType[];
+      id: project._id.toHexString(),
+      _id: project._id,
+      details: {
+        ...project.details,
+        features: project.details.features || [],
+        challenges: project.details.challenges || "No Challanges Listed",
+      },
+      image: project.image || "",
+      tech: project.tech || [],
+      liveUrl: project.liveUrl || "",
+      githubUrl: project.githubUrl || "",
+      featured: project.featured || false,
+      category: project.category || "Uncategorized",
+      description: project.description || "No description available",
+      title: project.title || "Untitled Project",
+    }));
   } catch (error) {
     throw new Error("Failed to fetch projects: " + error);
   }
