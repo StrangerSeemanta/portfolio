@@ -10,7 +10,7 @@ export async function fetchProjects(): Promise<ProjectType[]> {
 
     return projects.map((project) => ({
       ...project,
-      id: project._id.toHexString(),
+      id: typeof project._id ==="string"?project._id:project._id.toString("hex"),
       _id: project._id,
       details: {
         ...project.details,
