@@ -1,7 +1,9 @@
 "use server";
 import { getCollection } from "@/lib/db/db";
+import { getValidImageHostnames, isImageUrlValid } from "@/lib/utils";
 import { put } from "@vercel/blob";
-export async function uploadImage(file: File, id: string) {
+
+export async function uploadImageFileToVercel(file: File, id: string) {
   const collectionName = await getCollection("projectDB", "projects");
   const project = await collectionName.findOne({ id });
   if (!project) {
@@ -20,4 +22,25 @@ export async function uploadImage(file: File, id: string) {
   // Update the project with the new image URL
   await collectionName.updateOne({ id }, { $set: { image: vercelBlob.url } });
   return vercelBlob;
+}
+
+export async function updateImageUrl(image_url: string, id: string) {
+
+  const collectionName = await getCollection("projectDB", "projects");
+  const project = await collectionName.findOne({ id });
+  if (!project) {
+    throw new Error("Project not found");
+  }
+  if (image_url.length === 0) {
+    throw new Error("Image URl is missing. Failed to update");
+  }
+  if (!isImageUrlValid(image_url)) {
+    throw new Error(
+      `Unknown hostname. Image url need to be copied from  (${getValidImageHostnames().join(
+        ", "
+      )}) websites.`
+    );
+  }
+  // Update the project with the new image URL
+  await collectionName.updateOne({ id }, { $set: { image: image_url } });
 }

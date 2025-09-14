@@ -55,7 +55,7 @@ export default async function ProjectPage(props: {
           </div>
           <div className="flex items-center gap-4">
             <Link
-              href={`/admin/project/edit/${project._id}`}
+              href={`/admin/project/${project._id}/edit`}
               className="flex items-center gap-2 bg-indigo-100 text-indigo-600  px-4 py-2 rounded-full hover:shadow-sm shadow-lg transition duration-200"
             >
               <Edit3 size={20} />
