@@ -29,14 +29,18 @@ export default async function ProjectPage(props: {
 }) {
   const { id } = await props.params; // ✅ await the params
   const project = await fetchProject(id);
-  
+
   if (!project) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-          <h2 className="text-2xl font-bold text-red-500 mb-2">
-            Project not found
+          <h2 className="text-3xl font-bold text-red-500 mb-2">
+            <span> Project not found.</span>
           </h2>
+          <h3 className="my-4">
+            {" "}
+            <span>No project matched with given id. </span>
+          </h3>
           <BackButton />
         </div>
       </div>

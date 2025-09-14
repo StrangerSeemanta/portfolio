@@ -82,7 +82,7 @@ function UploadImagePage() {
         throw new Error("Project ID is required");
       }
       if (!imageURL) {
-        await handleUploadImageFile(String(id));
+         await handleUploadImageFile(String(id));
       } else {
         if (!isImageUrlValid(imageURL))
           throw new Error(
@@ -90,7 +90,8 @@ function UploadImagePage() {
               ", "
             )}) websites.`
           );
-        await updateImageUrl(imageURL, String(id));
+        const response = await updateImageUrl(imageURL, String(id));
+        if (response.status === "error") throw new Error(response.message);
       }
       toast.success("Image changed successfully!");
       setImageFile(null); // Reset image file state
