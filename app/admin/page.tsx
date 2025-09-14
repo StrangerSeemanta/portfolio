@@ -5,7 +5,6 @@ import Projects from "./Projects";
 export default async function AdminDashboard() {
 
   return (
-    <section className="text-black bg-white">
       <div className="min-h-screen bg-gray-50 p-8">
         <h1 className="text-2xl font-bold mb-6">Admin Dashboard</h1>
 
@@ -20,6 +19,5 @@ export default async function AdminDashboard() {
         <Projects/>
        
       </div>
-    </section>
   );
 }
