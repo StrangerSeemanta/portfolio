@@ -56,7 +56,7 @@ export default async function EditProjectPage(props: {
           </div>
           {!project.image && (
             <Link
-              href={`/admin/project/edit/${project._id}/uploadImg`}
+              href={`/admin/project/${project._id}/edit/uploadImg`}
               className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
             >
               <ImagePlus size={20} className="inline mr-1" />
@@ -80,7 +80,7 @@ export default async function EditProjectPage(props: {
                 />
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 bg-opacity-40 transition-all space-x-2 flex items-center justify-center">
                   <Link
-                    href={`/admin/project/edit/${project._id}/uploadImg`}
+                    href={`/admin/project/${project._id}/edit/uploadImg`}
                     className=" bg-white bg-opacity-80 text-gray-800 px-3 py-1 rounded-full hover:bg-opacity-100 transition"
                   >
                     <ImagePlus size={20} className="inline mr-1" />{" "}
