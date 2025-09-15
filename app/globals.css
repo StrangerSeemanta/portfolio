@@ -36,14 +36,11 @@
     @apply border-border;
   }
   body {
-    @apply bg-[#0a0a0a] text-foreground antialiased ;
+    @apply bg-[#0a0a0a] text-foreground antialiased;
   }
- 
 
- 
   @media screen and (max-width: 1024px) {
-    body
-     {
+    body {
       cursor: auto;
     }
     button,
@@ -243,3 +240,4 @@
   scrollbar-width: thin;
   scrollbar-color: #00b4d8 #0a0a0a;
 }
+
