@@ -32,7 +32,7 @@ async function DynamicFolderPage(props: {
     <div className="mt-6">
       <section>
         <h1 className="text-blue-600 text-2xl my-5">
-          Total Used: {total_vercelblob_used / 1000} KB
+          Total Used: {total_vercelblob_used / 1000/1000} MB
         </h1>
       </section>
       {folders && folders.length > 0 && (
