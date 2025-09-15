@@ -1,12 +1,11 @@
 "use client";
-import { redirect } from "next/navigation";
-import { getCollection } from "@/lib/db/db";
-import { ObjectId } from "mongodb";
+
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { addProjectToDatabase } from "@/app/actions/addProjects";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function AddProjectPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,12 +14,16 @@ export default function AddProjectPage() {
       setIsSubmitting(true);
       const result = await addProjectToDatabase(formData);
       if (result.success) {
-        console.log(result.message);
+        toast.success(result.message);
       } else {
+        toast.error(result.message);
+
         throw new Error(result.message);
       }
     } catch (error) {
       console.error("Error adding project:", error);
+      toast.error("Error adding project:" + String(error));
+
       // Handle error (e.g., show a notification)
     } finally {
       setIsSubmitting(false);

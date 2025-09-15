@@ -12,13 +12,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { updateProjectAction } from "@/app/actions/updateProject";
 
 async function fetchProject(id: string) {
-  const collection = await getCollection("projectDB", "projects");
-  const doc = await collection.findOne({
-    _id: new ObjectId(id),
-  });
-  if (!doc) return null;
-  const project = doc as ProjectType;
-  return project;
+  try {
+    const collection = await getCollection("projectDB", "projects");
+    const doc = await collection.findOne({
+      _id: new ObjectId(id),
+    });
+    if (!doc) return null;
+    const project = doc as ProjectType;
+    return project;
+  } catch (error) {
+    return null;
+  }
 }
 
 export default async function EditProjectPage(props: {
@@ -33,7 +37,7 @@ export default async function EditProjectPage(props: {
 
   if (!project) {
     return (
-       <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="bg-white p-8 rounded-lg shadow-lg text-center">
           <h2 className="text-3xl font-bold text-red-500 mb-2">
             <span> Project not found.</span>

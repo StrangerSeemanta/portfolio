@@ -194,9 +194,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>
                
-          <div className="min-h-screen bg-[#0a0a0a] grid-pattern">
+          <section className="min-h-screen bg-[#0a0a0a] w-full grid-pattern">
             {children}
-          </div>
+          </section>
           <Toaster />
       </body>
     </html>

@@ -15,13 +15,17 @@ import { Button } from "@/components/ui/button";
 import BackButton from "@/components/BackButton";
 
 async function fetchProject(id: string) {
-  const collection = await getCollection("projectDB", "projects");
-  const doc = await collection.findOne({
-    _id: new ObjectId(id),
-  });
-  if (!doc) return null;
-  const project = doc as ProjectType;
-  return project;
+  try {
+    const collection = await getCollection("projectDB", "projects");
+    const doc = await collection.findOne({
+      _id: new ObjectId(id),
+    });
+    if (!doc) return null;
+    const project = doc as ProjectType;
+    return project;
+  } catch (error) {
+    return null;
+  }
 }
 
 export default async function ProjectPage(props: {
@@ -66,7 +70,7 @@ export default async function ProjectPage(props: {
               Edit Project
             </Link>
             <Link
-              href={`/admin/project/delete/${project._id}`}
+              href={`/admin/project/${project._id}/delete`}
               className="flex items-center gap-2 bg-red-100  text-red-600 px-4 py-2 rounded-full hover:shadow-sm shadow-lg transition duration-200"
             >
               <Trash2 size={20} />

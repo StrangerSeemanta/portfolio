@@ -1,4 +1,5 @@
 "use client";
+import RippleLoader from "@/components/RippleLoader";
 import { Badge } from "@/components/ui/badge";
 import { ProjectType } from "@/lib/db/projectProps";
 import Image from "next/image";
@@ -16,17 +17,18 @@ function Projects() {
         headers: {
           "Content-Type": "application/json",
         },
-        cache:"no-store"
+        cache: "no-store",
       });
 
       if (!response.ok) {
-        throw new Error("Bad response. "+response.statusText);
+        throw new Error("Bad response. " + response.statusText);
       }
       const data = await response.json();
       setProjects(data);
-      toast.success("Fetched Updated Project Data");
     } catch (error) {
-      toast.error("Failed to fetch project data: ", { description: String(error) });
+      toast.error("Failed to fetch project data: ", {
+        description: String(error),
+      });
     } finally {
       setLoading(false);
     }
@@ -38,17 +40,7 @@ function Projects() {
   return (
     <section>
       {loading ? (
-        <div className="w-full p-20 flex justify-center items-center">
-          <div className="min-w-12 min-h-12 gap-20 flex flex-col justify-center items-center">
-            <div className="min-w-12 min-h-12 relative flex justify-center items-center ">
-              <div className="absolute w-8 h-8 rounded-full bg-blue-600 z-40 "></div>
-              <div className="absolute w-10 h-10 rounded-full bg-blue-300 z-30 animate-ping  delay-200"></div>
-              <div className="absolute w-16 h-16 rounded-full bg-blue-200 z-20 animate-ping delay-100"></div>
-              <div className="absolute w-20 h-20 rounded-full bg-blue-100 z-20 animate-ping "></div>
-            </div>
-            <h1 className="text-3xl  ">Loading Projects</h1>
-          </div>
-        </div>
+        <RippleLoader>Loading Projects</RippleLoader>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects ? (

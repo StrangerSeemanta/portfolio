@@ -1,5 +1,6 @@
 import { getCollection } from "@/lib/db/db";
 import { ProjectType } from "./projectProps";
+import { ObjectId } from "mongodb";
 
 export async function fetchProjects(): Promise<ProjectType[]> {
   try {
@@ -10,7 +11,10 @@ export async function fetchProjects(): Promise<ProjectType[]> {
 
     return projects.map((project) => ({
       ...project,
-      id: typeof project._id ==="string"?project._id:project._id.toString("hex"),
+      id:
+        typeof project._id === "string"
+          ? project._id
+          : project._id.toString("hex"),
       _id: project._id,
       details: {
         ...project.details,
@@ -28,5 +32,19 @@ export async function fetchProjects(): Promise<ProjectType[]> {
     }));
   } catch (error) {
     throw new Error("Failed to fetch projects: " + error);
+  }
+}
+
+export async function fetchSingleProject(projectId: string) {
+  try {
+    const collection = await getCollection("projectDB", "projects");
+    const doc = await collection.findOne({
+      _id: new ObjectId(projectId),
+    });
+    if (!doc) return null;
+    const project = doc as ProjectType;
+    return project;
+  } catch (error) {
+    throw new Error("Failed to fetch project: " + error);
   }
 }
