@@ -1,20 +1,11 @@
-import { list } from "@vercel/blob";
 import { Database } from "lucide-react";
 import Link from "next/link";
 
 async function StoragePage() {
-  const total_blobs = await list();
-  const total_vercelblob_used = total_blobs.blobs
-    .map((blob) => blob.size)
-    .reduce((a, b) => a + b);
-
+ 
   return (
     <div>
-      <section>
-        <h1 className="text-blue-600 text-2xl my-5">
-          Total Used: {total_vercelblob_used / 1000} KB
-        </h1>
-      </section>
+     
       <section>
         <h1 className="mb-2 text-lg ">Connected Storages</h1>
         <div className="w-full grid-cols-5 space-x-2">

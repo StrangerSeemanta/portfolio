@@ -5,9 +5,7 @@ import React from "react";
 import folder_icon from "@/assets/folder.png";
 import file_icon from "@/assets/file.png";
 
-import { blob } from "node:stream/consumers";
 import { Download, Trash } from "lucide-react";
-import { log } from "node:console";
 
 async function DynamicFolderPage(props: {
   params: Promise<{ foldername: string[] }>;
@@ -23,9 +21,20 @@ async function DynamicFolderPage(props: {
     mode: "folded",
     prefix: foldername.length > 1 ? current_foldername_decoded : undefined,
   });
-  console.log(`folders:`, folders, `\nblobs:`, blobs);
+  //console.log(`folders:`, folders, `\nblobs:`, blobs);
+
+  const total_blobs = await list();
+  const total_vercelblob_used = total_blobs.blobs
+    .map((blob) => blob.size)
+    .reduce((a, b) => a + b);
+
   return (
     <div className="mt-6">
+      <section>
+        <h1 className="text-blue-600 text-2xl my-5">
+          Total Used: {total_vercelblob_used / 1000} KB
+        </h1>
+      </section>
       {folders && folders.length > 0 && (
         <div className="folder_wrapper">
           <h1 className="text-xl font-semibold mb-4">Folders</h1>
