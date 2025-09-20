@@ -21,9 +21,10 @@ function Projects() {
   const fetchProjct = useCallback(async () => {
     try {
       const data = await fetchProjectsActions();
+      const data_without_hiddens = data.filter((value) => !value.hidden)
       if (data) {
-        setProjects(data);
-        setFilteredProjects(data);
+        setProjects(data_without_hiddens);
+        setFilteredProjects(data_without_hiddens);
         setSelectedCategory("All");
       } else {
         console.error("No projects found");
@@ -119,9 +120,9 @@ function Projects() {
                       </div>
 
                       <div className="flex flex-wrap gap-2 mt-auto">
-                        {project.tech.slice(0, 3).map((tech,idx) => (
+                        {project.tech.slice(0, 3).map((tech, idx) => (
                           <Badge
-                            key={tech+String(idx)}
+                            key={tech + String(idx)}
                             variant="secondary"
                             className="text-xs bg-opacity-20 hover:bg-opacity-30 transition-all"
                           >

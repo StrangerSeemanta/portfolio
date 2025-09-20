@@ -118,6 +118,18 @@ export default async function ProjectPage(props: {
                 Featured Project
               </Badge>
             )}
+             {/* Is hidden & manage */}
+              <div>
+                {project.hidden ? (
+                  <h3 className="bg-red-100  text-3xl p-2 border-4 border-double text-center border-red-400 text-red-600 font-bold">
+                    This project is hidden
+                  </h3>
+                ) : (
+                  <h3 className="bg-green-100  text-3xl p-2 border-4 border-double text-center border-green-400 text-green-600 font-bold">
+                    This project is public
+                  </h3>
+                )}
+              </div>
             <p className="text-lg">
               Category:{" "}
               <span className="text-blue-600 font-semibold">

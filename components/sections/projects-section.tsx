@@ -23,9 +23,10 @@ export function ProjectsSection() {
   const fetchProjct = useCallback(async () => {
     try {
       const data = await fetchProjectsActions();
+      const data_without_hiddens = data.filter((val) => !val.hidden);
       if (data) {
-        setProjects(data);
-        setFilteredProjects(data);
+        setProjects(data_without_hiddens);
+        setFilteredProjects(data_without_hiddens);
         setSelectedCategory("All");
       } else {
         console.error("No projects found");

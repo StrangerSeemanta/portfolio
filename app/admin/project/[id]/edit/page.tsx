@@ -123,6 +123,7 @@ export default async function EditProjectPage(props: {
                   </Badge>
                 </div>
               )}
+
               <div className="mt-2 flex items-center">
                 <label htmlFor="featured">Mark as Featured Project</label>
                 <Input
@@ -133,6 +134,30 @@ export default async function EditProjectPage(props: {
                   className="ml-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                 />
               </div>
+
+              {/* Is hidden & manage */}
+              <div>
+                {project.hidden ? (
+                  <h3 className="bg-red-100  text-3xl p-2 border-4 border-double text-center border-red-400 text-red-600 font-bold">
+                    This project is hidden
+                  </h3>
+                ) : (
+                  <h3 className="bg-green-100  text-3xl p-2 border-4 border-double text-center border-green-400 text-green-600 font-bold">
+                    This project is public
+                  </h3>
+                )}
+              </div>
+              <div className="mt-2 flex items-center">
+                <label htmlFor="hidden">Mark as Hidden Project</label>
+                <Input
+                  type="checkbox"
+                  name="hidden"
+                  id="hidden"
+                  defaultChecked={project.hidden}
+                  className="ml-2 h-4 w-4 checked:text-red-600 bg-red-600  checked:border-gray-300 rounded focus:ring-red-500"
+                />
+              </div>
+
               <p className="text-lg">
                 Category:{" "}
                 <Input
@@ -195,7 +220,10 @@ export default async function EditProjectPage(props: {
                 project.details.features.length > 0 ? (
                   <ol className="list-decimal pl-5 space-y-2">
                     {project.details.features.map((feature, index) => (
-                      <li key={index.toString()+feature} className="text-black text-lg">
+                      <li
+                        key={index.toString() + feature}
+                        className="text-black text-lg"
+                      >
                         <Input
                           name={`features[]`}
                           type="text"
@@ -247,7 +275,7 @@ export default async function EditProjectPage(props: {
                   {project.tech && project.tech.length > 0 ? (
                     project.tech.map((techName, idx) => (
                       <Input
-                        key={idx.toString()+techName}
+                        key={idx.toString() + techName}
                         name={`tech[]`}
                         type="text"
                         placeholder={`Tech Stack ${idx + 1}`}

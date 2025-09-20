@@ -22,6 +22,7 @@ export async function updateProjectAction(formData: FormData) {
       githubUrl: formData.get("githubUrl") as string,
       liveUrl: formData.get("liveUrl") as string,
       featured: formData.get("featured") === "on",
+      hidden:formData.get("hidden")==="on",
       tech: (formData.getAll("tech[]") as string[])
         .map((tech) => tech.trim())
         .filter(Boolean),
