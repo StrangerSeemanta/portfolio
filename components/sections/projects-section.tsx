@@ -83,10 +83,10 @@ export function ProjectsSection() {
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           <Filter className="w-5 h-5 text-gray-400 self-center mr-2" />
-          {categories.map((category,idx) => (
+          {categories.map((category, idx) => (
             <Button
               type="submit"
-              key={category+String(idx)}
+              key={category + String(idx)}
               variant={selectedCategory === category ? "default" : "outline"}
               onClick={(e) => {
                 e.preventDefault();
@@ -116,30 +116,27 @@ export function ProjectsSection() {
             </div>
           ) : filteredProjects && filteredProjects.length > 0 ? (
             filteredProjects.map((project, index) => (
-              <div
-                key={project.liveUrl+String(index)}
-              
-              >
+              <div key={project.liveUrl + String(index)}>
                 <Card className="project-card glass-card border-0 h-full hover:scale-[1.02] transition-transform duration-300 hover-glow">
                   <CardContent className="p-0 flex flex-col h-full">
-                   {project.image && (
-                     <div className="relative">
-                      <div className="w-full h-[200px] overflow-hidden rounded-t-lg">
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover rounded-t-lg"
-                          priority
-                        />
+                    {project.image && (
+                      <div className="relative">
+                        <div className="w-full h-[200px] overflow-hidden rounded-t-lg">
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover rounded-t-lg"
+                            priority
+                          />
+                        </div>
+                        {project.featured && (
+                          <Badge className="absolute top-3 left-3 bg-gradient-to-r from-[#00b4d8] to-[#7209b7] animate-pulse">
+                            Featured
+                          </Badge>
+                        )}
                       </div>
-                      {project.featured && (
-                        <Badge className="absolute top-3 left-3 bg-gradient-to-r from-[#00b4d8] to-[#7209b7] animate-pulse">
-                          Featured
-                        </Badge>
-                      )}
-                    </div>
                     )}
 
                     <div className="p-5 space-y-4 flex-1 flex flex-col">
@@ -153,9 +150,9 @@ export function ProjectsSection() {
                       </div>
 
                       <div className="flex flex-wrap gap-2 mt-auto">
-                        {project.tech.slice(0, 3).map((tech) => (
+                        {project.tech.slice(0, 3).map((tech, i) => (
                           <Badge
-                            key={tech}
+                            key={tech + String(i)}
                             variant="secondary"
                             className="text-xs bg-opacity-20 hover:bg-opacity-30 transition-all"
                           >
@@ -205,6 +202,7 @@ export function ProjectsSection() {
                         <ProjectDialog
                           project={{ ...project, id: project.id.toString() }}
                         />
+                        {/* <Link href={"/project/" + project.id}>Details</Link> */}
                       </div>
                     </div>
                   </CardContent>

@@ -58,7 +58,7 @@ function ProjectDialog({
             </h4>
             <ul className="list-disc list-inside space-y-1 text-gray-400">
               {project.details.features.map((feature, i) => (
-                <li key={i}>{feature}</li>
+                <li key={String(i)+feature}>{feature}</li>
               ))}
             </ul>
           </div>
@@ -68,9 +68,9 @@ function ProjectDialog({
               Technologies Used
             </h4>
             <div className="flex flex-wrap gap-2">
-              {project.tech.map((tech) => (
+              {project.tech.map((tech,idx) => (
                 <Badge
-                  key={tech}
+                  key={tech+String(idx)}
                   className="bg-gradient-to-r from-[#00b4d8] to-[#7209b7]"
                 >
                   {tech}

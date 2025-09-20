@@ -119,9 +119,9 @@ function Projects() {
                       </div>
 
                       <div className="flex flex-wrap gap-2 mt-auto">
-                        {project.tech.slice(0, 3).map((tech) => (
+                        {project.tech.slice(0, 3).map((tech,idx) => (
                           <Badge
-                            key={tech}
+                            key={tech+String(idx)}
                             variant="secondary"
                             className="text-xs bg-opacity-20 hover:bg-opacity-30 transition-all"
                           >

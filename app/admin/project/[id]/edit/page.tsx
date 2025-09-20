@@ -195,7 +195,7 @@ export default async function EditProjectPage(props: {
                 project.details.features.length > 0 ? (
                   <ol className="list-decimal pl-5 space-y-2">
                     {project.details.features.map((feature, index) => (
-                      <li key={index} className="text-black text-lg">
+                      <li key={index.toString()+feature} className="text-black text-lg">
                         <Input
                           name={`features[]`}
                           type="text"
@@ -247,7 +247,7 @@ export default async function EditProjectPage(props: {
                   {project.tech && project.tech.length > 0 ? (
                     project.tech.map((techName, idx) => (
                       <Input
-                        key={idx}
+                        key={idx.toString()+techName}
                         name={`tech[]`}
                         type="text"
                         placeholder={`Tech Stack ${idx + 1}`}

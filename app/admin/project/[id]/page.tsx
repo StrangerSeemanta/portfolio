@@ -160,7 +160,7 @@ export default async function ProjectPage(props: {
               project.details.features.length > 0 ? (
                 <ul className="list-disc pl-5 space-y-2">
                   {project.details.features.map((feature, index) => (
-                    <li key={index} className="text-black text-lg">
+                    <li key={String(index)+feature} className="text-black text-lg">
                       {feature}
                     </li>
                   ))}
@@ -181,7 +181,7 @@ export default async function ProjectPage(props: {
                   {project.details.challenges
                     .split(",")
                     .map((challenge, index) => (
-                      <li key={index} className="text-black text-lg">
+                      <li key={String(index)+challenge} className="text-black text-lg">
                         {challenge}
                       </li>
                     ))}
