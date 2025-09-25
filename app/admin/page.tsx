@@ -19,6 +19,12 @@ export default async function AdminDashboard() {
           className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
         >
           Manage Storage
+        </Link>{" "}
+        <Link
+          href="/admin/metadata"
+          className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+        >
+          Update Metadata
         </Link>
       </div>
       <Projects />

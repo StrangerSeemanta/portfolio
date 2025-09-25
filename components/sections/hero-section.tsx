@@ -5,9 +5,9 @@ import GetInTouchBtn from "../uiHeroSection/GetInTouchBtn";
 import ViewWorkBtn from "../uiHeroSection/ViewWorkBtn";
 import Desc from "../uiHeroSection/Desc";
 import ProfileImage from "../uiHeroSection/ProfileImage";
-import SocialHead from "../uiHeroSection/SocialHead";
+import SocialHeads from "../uiHeroSection/SocialHeads";
 
-function HeroSection() {
+async function HeroSection() {
   return (
     <section
       id="hero"
@@ -37,20 +37,8 @@ function HeroSection() {
           </div>
 
           {/* Social Links */}
-          <div className="flex justify-center space-x-6 py-8 ">
-            {[
-              {
-                href: "https://github.com",
-                label: "Github",
-              },
-              {
-                href: "https://linkedin.com",
-                label: "LinkedIn",
-              },
-              { href: "mailto:shuvo@example.com", label: "Email" },
-            ].map(({ ...props }) => (
-              <SocialHead key={props.label} {...props} />
-            ))}
+          <div className="flex flex-wrap justify-center items-center gap-6 py-8 ">
+              <SocialHeads/>
           </div>
         </div>
       </div>

@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Calendar, MapPin, Coffee, Heart, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ParticleField } from "@/components/particleField";
+import Link from "next/link";
 
 const timelineEvents = [
   {
@@ -125,10 +125,15 @@ export function AboutSection() {
                     understanding of modern development practices, cloud technologies, and user 
                     experience design.`}
                     </p>
-                    <Button className="text-white bg-gradient-to-r from-[#00b4d8] to-[#7209b7] hover:from-[#00a2c7] hover:to-[#6508a6]">
+                    <Link
+                      download
+                      target="_blank"
+                      href={"/cv/cv_shuvo_sarker.docx"}
+                      className="flex justify-center items-center space-x-2 w-fit py-2 px-4 rounded-sm text-white bg-gradient-to-r from-[#00b4d8] to-[#7209b7] hover:from-[#00a2c7] hover:to-[#6508a6]"
+                    >
                       <Download className="w-4 h-4 mr-2" />
                       Download Resume
-                    </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
