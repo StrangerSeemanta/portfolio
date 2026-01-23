@@ -29,7 +29,7 @@ export function ProjectsSection() {
         setFilteredProjects(data_without_hiddens);
         setSelectedCategory("All");
       } else {
-        console.error("No projects found");
+        console.error("No projects found on fetch.");
       }
     } catch (error) {
       console.error("Failed to fetch projects:", error);
