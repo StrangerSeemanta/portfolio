@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import {ClerkProvider} from "@clerk/nextjs"
 import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
@@ -191,7 +192,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+   <ClerkProvider>
+     <html lang="en">
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>
                
           <section className="min-h-screen bg-[#0a0a0a] w-full grid-pattern">
@@ -200,5 +202,6 @@ export default function RootLayout({
           <Toaster />
       </body>
     </html>
+   </ClerkProvider>
   );
 }

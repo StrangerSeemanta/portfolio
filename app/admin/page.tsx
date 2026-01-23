@@ -7,7 +7,7 @@ export default async function AdminDashboard() {
     <div className="min-h-screen bg-gray-50 p-8">
       <h1 className="text-2xl font-bold mb-6">Admin Dashboard</h1>
 
-      <div className="mb-6 space-x-2">
+      <div className="mb-6 gap-2 flex flex-wrap ">
         <Link
           href="/admin/project/add"
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
@@ -25,6 +25,12 @@ export default async function AdminDashboard() {
           className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
         >
           Update Metadata
+        </Link>
+        <Link
+          href="/admin/panel/profile"
+          className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
+        >
+          Admin Panel
         </Link>
       </div>
       <Projects />
