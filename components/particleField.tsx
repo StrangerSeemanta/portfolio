@@ -13,7 +13,10 @@ interface Particle {
 
 export function ParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const particlesRef = useRef<Particle[]>([]);
+  
+  // Use a ref for dimensions to avoid closure staleness in the resize handler
+  // if you were to rely on state.
+  const containerRef = useRef<HTMLDivElement>(null); 
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -22,81 +25,99 @@ export function ParticleField() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    let animationFrameId: number;
+    let particles: Particle[] = [];
+
+    // Helper to handle High DPI screens
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      
+      // Scale visual size back down via CSS
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      
+      // Normalize coordinate system to use logical pixels in math
+      ctx.scale(dpr, dpr);
+      
+      // Re-create particles on resize to fill new area
+      createParticles();
     };
 
     const createParticles = () => {
-      const particles: Particle[] = [];
-      const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+      const particleCount = Math.floor((window.innerWidth * window.innerHeight) / 15000);
+      const newParticles: Particle[] = [];
 
       for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
+        newParticles.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
           size: Math.random() * 3 + 1,
           opacity: Math.random() * 0.5 + 0.2,
         });
       }
-
-      particlesRef.current = particles;
+      particles = newParticles;
     };
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Clear using logical pixels
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-      particlesRef.current.forEach((particle) => {
+      particles.forEach((particle, i) => {
         // Update position
         particle.x += particle.vx;
         particle.y += particle.vy;
 
         // Wrap around edges
-        if (particle.x < 0) particle.x = canvas.width;
-        if (particle.x > canvas.width) particle.x = 0;
-        if (particle.y < 0) particle.y = canvas.height;
-        if (particle.y > canvas.height) particle.y = 0;
+        if (particle.x < 0) particle.x = window.innerWidth;
+        if (particle.x > window.innerWidth) particle.x = 0;
+        if (particle.y < 0) particle.y = window.innerHeight;
+        if (particle.y > window.innerHeight) particle.y = 0;
 
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(0, 180, 216, ${particle.opacity})`;
         ctx.fill();
+
+        // Draw connections to nearby particles
+        for (let j = i + 1; j < particles.length; j++) {
+            const otherParticle = particles[j];
+            const dx = particle.x - otherParticle.x;
+            const dy = particle.y - otherParticle.y;
+            
+            // If horizontal or vertical distance is already too big, skip sqrt
+            if (Math.abs(dx) > 150 || Math.abs(dy) > 150) continue;
+
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 150) {
+              ctx.beginPath();
+              ctx.moveTo(particle.x, particle.y);
+              ctx.lineTo(otherParticle.x, otherParticle.y);
+              ctx.strokeStyle = `rgba(0, 180, 216, ${0.1 * (1 - distance / 150)})`;
+              ctx.stroke();
+            }
+        }
       });
 
-      // Draw connections
-      particlesRef.current.forEach((particle, i) => {
-        particlesRef.current.slice(i + 1).forEach((otherParticle) => {
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 150) {
-            ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = `rgba(0, 180, 216, ${0.1 * (1 - distance / 150)})`;
-            ctx.stroke();
-          }
-        });
-      });
-
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     };
 
+    // Initialize
     resizeCanvas();
-    createParticles();
     animate();
 
-    window.addEventListener('resize', () => {
-      resizeCanvas();
-      createParticles();
-    });
+    // Event Listener setup
+    window.addEventListener('resize', resizeCanvas);
 
+    // Cleanup
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
