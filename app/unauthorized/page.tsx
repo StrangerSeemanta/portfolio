@@ -18,6 +18,7 @@ export default async function UnauthorizedPage() {
           },
         }}
       />
+      <h6>Role: <span className="px-2 py-[0.4px] bg-black text-sm text-white rounded-full capitalize mx-2"> {currentAuthUser.sessionClaims?.metadata.role || "unassigned"}</span></h6>
       {isAdmin ? (
         <>
           <h1 className="text-2xl font-semibold text-green-600">
