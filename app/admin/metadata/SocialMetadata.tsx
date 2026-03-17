@@ -5,7 +5,7 @@ import {
   updateSocialData,
 } from "@/app/actions/HandleSocialData";
 import { Button } from "@/components/ui/button";
-import { SocialData } from "@/lib/db/socialdata";
+import { SocialDataWithObjectId } from "@/lib/db/socialdata";
 import { Check, Loader2, Trash } from "lucide-react";
 import { Pencil, X } from "lucide-react";
 import React, { FormEvent, useCallback, useEffect, useState } from "react";
@@ -15,7 +15,7 @@ function SocialDataShow({
   socialData,
   onDataChangeComplete,
 }: {
-  socialData: SocialData;
+  socialData: SocialDataWithObjectId;
   onDataChangeComplete?: () => Promise<void>;
 }) {
   const [isEdit, setEdit] = useState(false);
@@ -128,7 +128,7 @@ function SocialDataShow({
   );
 }
 function SocialMetadata() {
-  const [socialData, setSocialData] = useState<SocialData[] | null>(null);
+  const [socialData, setSocialData] = useState<SocialDataWithObjectId[] | null>(null);
   const [error, setError] = useState<string | undefined>();
   const [loading, setLoading] = useState(true);
   const [addData, setAddData] = useState(false);
@@ -145,7 +145,7 @@ function SocialMetadata() {
         throw new Error("Failed to fetch data");
       }
 
-      const data = (await response.json()) as SocialData[];
+      const data = (await response.json()) as SocialDataWithObjectId[];
       setSocialData(data);
     } catch (err) {
       const e = String(err);
