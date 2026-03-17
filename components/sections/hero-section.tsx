@@ -5,7 +5,8 @@ import GetInTouchBtn from "../uiHeroSection/GetInTouchBtn";
 import ViewWorkBtn from "../uiHeroSection/ViewWorkBtn";
 import Desc from "../uiHeroSection/Desc";
 import ProfileImage from "../uiHeroSection/ProfileImage";
-import SocialHeads from "../uiHeroSection/SocialHeads";
+import SocialHeadsStatic from "../uiHeroSection/SocialHeadsStatic";
+import SocialHeadsDynamic from "../uiHeroSection/SocialHeadsDynamic";
 
 async function HeroSection() {
   return (
@@ -38,7 +39,7 @@ async function HeroSection() {
 
           {/* Social Links */}
           <div className="flex flex-wrap justify-center items-center gap-6 py-8 ">
-              <SocialHeads/>
+              <SocialHeadsStatic/>
           </div>
         </div>
       </div>
