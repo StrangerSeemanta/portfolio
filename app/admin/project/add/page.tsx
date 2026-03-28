@@ -8,6 +8,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 export default function AddProjectPage() {
+  const [featuresCount , setFeaturesCount] = useState(3);
+  const [techCount , setTechCount] = useState(3);
   const [isSubmitting, setIsSubmitting] = useState(false);
   async function handleSubmit(formData: FormData) {
     try {
@@ -88,7 +90,19 @@ export default function AddProjectPage() {
               name="features[]"
               placeholder="Feature 3"
             />
-            <Button type="button" className="text-white">
+            {featuresCount > 3 && (
+              <>
+                {Array.from({ length: featuresCount - 3 }).map((_, index) => (
+                  <Input
+                    key={index}
+                    className="text-black bg-gray-200"
+                    name="features[]"
+                    placeholder={`Feature ${index + 4}`}
+                  />
+                ))}
+              </>
+            )}
+            <Button type="button" className="text-white" onClick={() => setFeaturesCount(featuresCount + 1)}>
               + Add More Features
             </Button>
           </div>
@@ -110,7 +124,19 @@ export default function AddProjectPage() {
               name="tech[]"
               placeholder="Tech 3"
             />
-            <Button type="button" className="text-white">
+            {techCount > 3 && (
+              <>
+                {Array.from({ length: techCount - 3 }).map((_, index) => (
+                  <Input
+                    key={index}
+                    className="text-black bg-gray-200"
+                    name="tech[]"
+                    placeholder={`Tech ${index + 4}`} 
+                  />
+                ))}
+              </>
+            )}
+            <Button type="button" className="text-white" onClick={() => setTechCount(techCount + 1)}>
               + Add More Tech
             </Button>
           </div>
