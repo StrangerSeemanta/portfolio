@@ -78,7 +78,7 @@ function Projects() {
         ))}
       </div>
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 md:px-28 gap-6 auto-rows-auto ">
+        <div className="flex flex-col justify-center items-center auto-rows-auto ">
           {/* Projects will be rendered here */}
           {isFetching ? (
             <div className="col-span-2 text-center py-10">
@@ -87,7 +87,7 @@ function Projects() {
           ) : filteredProjects && filteredProjects.length > 0 ? (
             filteredProjects.map((project, index) => (
               <div key={project.id + String(index)}>
-                <Card className="project-card glass-card border-0 h-full hover:scale-[1.02] transition-transform duration-300 hover-glow">
+                <Card className="project-card glass-card border-0 md:min-w-[350px] lg:min-w-[400px] xl:min-w-[600px] h-full hover:scale-[1.02] transition-transform duration-300 hover-glow">
                   <CardContent className="p-0 flex flex-col h-full">
                     {project.image && (
                       <div className="relative">

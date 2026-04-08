@@ -143,7 +143,7 @@ export function SkillsSection() {
                             {skill.name}
                           </span>
                           <span className="text-sm text-gray-400">
-                            {skill.level}%
+                            {skill.level > 90 ? "Expert" : skill.level > 70 ? "Excellent" : skill.level > 50 ? "Intermediate" : "Learning"}  
                           </span>
                         </div>
                         <div className="skill-progress">
