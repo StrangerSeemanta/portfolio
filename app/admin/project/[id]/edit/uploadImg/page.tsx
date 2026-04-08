@@ -82,13 +82,13 @@ function UploadImagePage() {
         throw new Error("Project ID is required");
       }
       if (!imageURL) {
-         await handleUploadImageFile(String(id));
+        await handleUploadImageFile(String(id));
       } else {
         if (!isImageUrlValid(imageURL))
           throw new Error(
             `Unknown hostname. Image url need to be copied from  (${getValidImageHostnames().join(
-              ", "
-            )}) websites.`
+              ", ",
+            )}) websites.`,
           );
         const response = await updateImageUrl(imageURL, String(id));
         if (response.status === "error") throw new Error(response.message);
@@ -276,9 +276,9 @@ function UploadImagePage() {
 
           <div className="flex flex-col items-center space-y-4">
             <h1 className="text-xl font-bold text-gray-800 ">Large Size</h1>{" "}
-            <div className=" w-full h-[350px]  rounded-lg flex items-center justify-center  bg-gray-100 transition ">
+            <div className=" w-full h-[400px]  rounded-lg flex items-center justify-center  bg-gray-100 transition ">
               {preview ? (
-                <div className="group relative w-full h-[350px] overflow-hidden rounded-lg shadow-lg">
+                <div className="group relative w-full h-[400px] overflow-hidden rounded-lg shadow-lg">
                   <Image
                     alt={"large size preview"}
                     src={preview}
@@ -295,9 +295,9 @@ function UploadImagePage() {
               )}
             </div>
             <h1 className="text-xl font-bold text-gray-800 ">Card Size</h1>{" "}
-            <div className=" w-full h-[200px]  rounded-lg flex items-center justify-center  bg-gray-100 transition ">
+            <div className=" w-full h-[400px]  rounded-lg flex items-center justify-center  bg-gray-100 transition ">
               {preview ? (
-                <div className="group relative w-full h-[200px] overflow-hidden rounded-lg shadow-lg">
+                <div className="group relative w-full h-[400px] overflow-hidden rounded-lg shadow-lg">
                   <Image
                     alt={"card size preview"}
                     src={preview}

@@ -49,12 +49,12 @@ export function ProjectsSection() {
         setFilteredProjects(projects);
       } else {
         const filtered = projects.filter(
-          (project) => project.category === catagory
+          (project) => project.category === catagory,
         );
         setFilteredProjects(filtered);
       }
     },
-    [projects]
+    [projects],
   );
   return (
     <section id="projects" className="relative py-20 px-4 sm:px-6 lg:px-8 ">
@@ -122,13 +122,17 @@ export function ProjectsSection() {
                   <CardContent className="p-0 flex flex-col h-full">
                     {project.image && (
                       <div className="relative">
-                        <div className="w-full h-[200px] overflow-hidden rounded-t-lg">
+                        <div className="w-full h-[300px] overflow-hidden rounded-t-lg">
                           <Image
                             src={project.image}
                             alt={project.title}
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="object-cover rounded-t-lg"
+                            className="object-cover object-center rounded-t-lg"
+                            style={{
+                              objectFit: "cover",
+                              objectPosition: "center",
+                            }}
                             priority
                           />
                         </div>

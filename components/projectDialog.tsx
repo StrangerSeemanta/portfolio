@@ -38,11 +38,10 @@ function ProjectDialog({
             src={project.image}
             alt={project.title}
             width={800}
-            height={256}
-            className="w-full h-64 object-cover rounded-lg"
+            height={400}
+            className="w-full h-auto object-cover rounded-lg"
             style={{
               width: "100%",
-              height: "16rem",
               objectFit: "cover",
             }}
           />

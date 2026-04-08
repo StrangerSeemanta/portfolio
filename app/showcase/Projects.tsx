@@ -91,7 +91,7 @@ function Projects() {
                   <CardContent className="p-0 flex flex-col h-full">
                     {project.image && (
                       <div className="relative">
-                        <div className="w-full h-[200px] overflow-hidden rounded-t-lg">
+                        <div className="w-full h-[400px] overflow-hidden rounded-t-lg">
                           <Image
                             src={project.image}
                             alt={project.title}
