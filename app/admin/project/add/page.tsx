@@ -11,6 +11,7 @@ export default function AddProjectPage() {
   const [featuresCount , setFeaturesCount] = useState(3);
   const [techCount , setTechCount] = useState(3);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
   async function handleSubmit(formData: FormData) {
     try {
       setIsSubmitting(true);

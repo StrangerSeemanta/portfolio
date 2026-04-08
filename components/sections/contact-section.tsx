@@ -73,10 +73,15 @@ export function ContactSection() {
         toast.success("Message sent successfully! I'll get back to you soon.");
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        throw new Error("Failed to send message");
+        const errtxt = await response.text();
+        throw new Error("Failed to send message: "+ " \n"+ errtxt );
       }
     } catch (error) {
-      toast.error("Failed to send message. Please try again.");
+      toast.error("Failed to send message. Please try again.",{
+        description: String(error),
+      });
+
+      console.error("Error sending message:", error);
     } finally {
       setIsSubmitting(false);
     }

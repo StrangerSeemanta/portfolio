@@ -1,6 +1,7 @@
 // app/admin/page.tsx
 import Link from "next/link";
 import Projects from "./Projects";
+import { MessageCircle } from "lucide-react";
 
 export default async function AdminDashboard() {
   return (
@@ -31,6 +32,13 @@ export default async function AdminDashboard() {
           className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
         >
           Admin Panel
+        </Link>
+         <Link
+          href="/admin/messages"
+          className="bg-gradient-to-bl flex justify-center items-center gap-2 from-pink-600 font-bold to-indigo-600 hover:from-indigo-600 hover:to-pink-600 text-white px-4 py-2 rounded hover:bg-gray-800"
+        >
+          <MessageCircle className="text-white" />
+          Inbox
         </Link>
       </div>
       <Projects />
