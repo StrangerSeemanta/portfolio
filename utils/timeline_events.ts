@@ -60,19 +60,19 @@ export const timelineEvents: {
     description:
       "Started exploring Artificial Intelligence and Machine Learning fundamentals. Learning Python for ML, data analysis, and neural networks basics.",
   },
-  {
-    year: 2023,
-    title: "Started Python Programming",
-    position: "Learnt Fundamentals and OOP Concepts",
-    description:
-      "Started learning Python programming language, focusing on fundamentals and object-oriented programming concepts. Built small projects to practice and solidify understanding of Python syntax and programming paradigms.",
-  },
+  
   {
     year: 2023,
     title: "Full-Stack Developer",
     position: "MERN Stack & Next JS",
     description:
       "Developed full-stack web applications using MongoDB,Next or Express, React and Node.js. Implemented REST APIs and database architecture.",
+  },{
+    year: 2022,
+    title: "Python Programming",
+    position: "Learnt System Programming",
+    description:
+      "Started learning Python programming language, focusing on system programming concepts and scripting for automation. Built small projects to practice and solidify understanding of Python syntax and programming paradigms.",
   },
   {
     year: 2021,
