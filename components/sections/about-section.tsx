@@ -174,7 +174,7 @@ export function AboutSection() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    
+                    viewport={{once:true}}
                     transition={{ duration: 0.7, delay: 0.2 }}
                     className="flex-1"
                   >
