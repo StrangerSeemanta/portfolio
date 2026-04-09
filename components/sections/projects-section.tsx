@@ -23,7 +23,7 @@ export function ProjectsSection() {
   const fetchProjct = useCallback(async () => {
     try {
       const data = await fetchProjectsActions();
-      const data_without_hiddens = data.filter((val) => !val.hidden);
+      const data_without_hiddens = data.filter((val) => (!val.hidden && val.featured));
       if (data) {
         setProjects(data_without_hiddens);
         setFilteredProjects(data_without_hiddens);
@@ -48,8 +48,8 @@ export function ProjectsSection() {
       if (catagory === "All") {
         setFilteredProjects(projects);
       } else {
-        const filtered = projects.filter(
-          (project) => project.category === catagory,
+        const filtered = projects.filter((project) =>
+          project.category.includes(catagory),
         );
         setFilteredProjects(filtered);
       }

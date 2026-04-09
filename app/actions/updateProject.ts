@@ -18,7 +18,7 @@ export async function updateProjectAction(formData: FormData) {
       // Convert formData to the appropriate types if necessary
       title: formData.get("title") as string,
       description: formData.get("description") as string,
-      category: formData.get("category") as string,
+      category: formData.get("category") as unknown as string[],
       githubUrl: formData.get("githubUrl") as string,
       liveUrl: formData.get("liveUrl") as string,
       featured: formData.get("featured") === "on",

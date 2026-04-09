@@ -167,7 +167,7 @@ export default async function EditProjectPage(props: {
                   placeholder="Enter project category"
                   className="text-lg mt-2 font-bold text-black w-fit bg-gray-100 "
                   defaultValue={
-                    project.category ? project.category : "Uncategorized"
+                    project.category ? project.category.join(", ") : "Uncategorized"
                   }
                 />
               </p>

@@ -133,7 +133,7 @@ export default async function ProjectPage(props: {
             <p className="text-lg">
               Category:{" "}
               <span className="text-blue-600 font-semibold">
-                {project.category}
+                {project.category.join(", ")}
               </span>
             </p>
             <div>

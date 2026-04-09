@@ -6,7 +6,7 @@ export interface ProjectType {
   title: string;
   hidden:boolean;
   featured: boolean;
-  category: string;
+  category: string[] ;
   description: string;
   image: string;
   tech: string[];

@@ -6,7 +6,7 @@ export async function addProjectToDatabase(formData: FormData) {
   const _id = new ObjectId();
   const id = _id.toString("hex");
   const title = formData.get("title")?.toString().trim();
-  const category = formData.get("category")?.toString().trim();
+  const category = formData.get("category")?.toString().trim().split(",").map((cat) => cat.trim());
   const description = formData.get("description")?.toString().trim();
   const image = formData.get("image")?.toString().trim() || null;
   const githubUrl = formData.get("githubUrl")?.toString().trim();

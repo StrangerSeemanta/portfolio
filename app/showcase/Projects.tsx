@@ -47,7 +47,7 @@ function Projects() {
         setFilteredProjects(projects);
       } else {
         const filtered = projects.filter(
-          (project) => project.category === catagory,
+          (project) => project.category.includes(catagory),
         );
         setFilteredProjects(filtered);
       }
