@@ -21,7 +21,7 @@ function Projects() {
   const fetchProjct = useCallback(async () => {
     try {
       const data = await fetchProjectsActions();
-      const data_without_hiddens = data.filter((value) => !value.hidden)
+      const data_without_hiddens = data.filter((value) => !value.hidden);
       if (data) {
         setProjects(data_without_hiddens);
         setFilteredProjects(data_without_hiddens);
@@ -47,12 +47,12 @@ function Projects() {
         setFilteredProjects(projects);
       } else {
         const filtered = projects.filter(
-          (project) => project.category === catagory
+          (project) => project.category === catagory,
         );
         setFilteredProjects(filtered);
       }
     },
-    [projects]
+    [projects],
   );
   return (
     <>
@@ -78,66 +78,61 @@ function Projects() {
         ))}
       </div>
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="flex flex-col justify-center items-center auto-rows-auto ">
+        <div className="space-y-4">
           {/* Projects will be rendered here */}
           {isFetching ? (
-            <div className="col-span-2 text-center py-10">
+            <div className="text-center py-10">
               <p className="text-gray-400">Loading projects...</p>
             </div>
           ) : filteredProjects && filteredProjects.length > 0 ? (
             filteredProjects.map((project, index) => (
-              <div key={project.id + String(index)}>
-                <Card className="project-card glass-card border-0 md:min-w-[350px] lg:min-w-[400px] xl:min-w-[600px] h-full hover:scale-[1.02] transition-transform duration-300 hover-glow">
-                  <CardContent className="p-0 flex flex-col h-full">
+              <Card
+                key={project.id + String(index)}
+                className="project-card glass-card border-0 hover:scale-[1.01] group transition-transform duration-300 hover-glow"
+              >
+                <CardContent className="p-4">
+                  <div className="flex md:items-center gap-4 ">
+                    {/* Thumbnail */}
                     {project.image && (
-                      <div className="relative">
-                        <div className="w-full h-[400px] overflow-hidden rounded-t-lg">
+                      <div className="flex-shrink-0 hidden md:block">
+                        <div className="relative w-full md:w-32 h-32 md:h-20 rounded-lg overflow-hidden">
                           <Image
                             src={project.image}
                             alt={project.title}
                             fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="object-cover rounded-t-lg"
+                            sizes="(max-width: 768px) 100vw, 128px"
+                            className="object-cover"
                             priority
                           />
                         </div>
-                        {project.featured && (
-                          <Badge className="absolute top-3 left-3 bg-gradient-to-r from-[#00b4d8] to-[#7209b7] animate-pulse">
-                            Featured
-                          </Badge>
-                        )}
                       </div>
                     )}
 
-                    <div className="p-5 space-y-4 flex-1 flex flex-col">
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-2 hover:text-[#00b4d8] transition-colors">
-                          {project.title}
-                        </h3>
-                        <p className="text-gray-400 text-sm line-clamp-2">
-                          {project.description}
-                        </p>
-                      </div>
+                    {/* Project Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between flex-wrap gap-4">
+                        <div className="min-w-0">
+                          <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-[#00b4d8] transition-colors">
+                            {project.title}
+                          </h3>
+                          <p className="text-gray-400 text-sm line-clamp-1 hidden md:block">
+                            {project.description}
+                          </p>
+                          <div className="mt-2 flex flex-wrap gap-1">
+                            {project.tech.map((tech, idx) => (
+                              <Badge
+                                key={tech + String(idx)}
+                                variant="outline"
+                                className="text-xs text-gray-400 border-gray-400"
+                              >
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
 
-                      <div className="flex flex-wrap gap-2 mt-auto">
-                        {project.tech.slice(0, 3).map((tech, idx) => (
-                          <Badge
-                            key={tech + String(idx)}
-                            variant="secondary"
-                            className="text-xs bg-opacity-20 hover:bg-opacity-30 transition-all"
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
-                        {project.tech.length > 3 && (
-                          <Badge variant="secondary" className="text-xs">
-                            +{project.tech.length - 3}
-                          </Badge>
-                        )}
-                      </div>
-
-                      <div className="flex items-center justify-between pt-3">
-                        <div className="flex space-x-2">
+                        {/* Links */}
+                        <div className="flex-shrink-0 flex space-x-2">
                           <Button
                             size="sm"
                             variant="ghost"
@@ -168,18 +163,23 @@ function Projects() {
                               <Github className="w-4 h-4" />
                             </a>
                           </Button>
+                          <div>
+                            <ProjectDialog
+                              project={{
+                                ...project,
+                                id: project.id.toString(),
+                              }}
+                            />
+                          </div>
                         </div>
-                        <ProjectDialog
-                          project={{ ...project, id: project.id.toString() }}
-                        />
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </div>
+                  </div>
+                </CardContent>
+              </Card>
             ))
           ) : (
-            <div className="col-span-2 text-center py-10">
+            <div className="text-center py-10">
               <p className="text-gray-400">
                 No projects found in this category.
               </p>
