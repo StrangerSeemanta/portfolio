@@ -6,51 +6,9 @@ import { Calendar, MapPin, Coffee, Heart, Download } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ParticleField } from "@/components/particleField";
 import Link from "next/link";
+import { timelineEvents } from "@/utils/timeline_events";
 
-const timelineEvents = [
-  {
-    year: 2025,
-    title: "Building AI Integrated Full-Stack App",
-    position: "AI & ML Projects",
-    description:
-      "Working on advanced AI applications using TensorFlow and PyTorch. Developing full-stack applications with AI integration and machine learning models.",
-  },
-  {
-    year: 2024,
-    title: "Started AI and ML ",
-    position: "Basic Concepts",
-    description:
-      "Started exploring Artificial Intelligence and Machine Learning fundamentals. Learning Python for ML, data analysis, and neural networks basics.",
-  },
-  {
-    year: 2023,
-    title: "Full-Stack Developer",
-    position: "MERN Stack & Next JS",
-    description:
-      "Developed full-stack web applications using MongoDB,Next or Express, React and Node.js. Implemented REST APIs and database architecture.",
-  },
-  {
-    year: 2021,
-    title: "Advanced Frontend Developer",
-    position: "Started Freelancing Career",
-    description:
-      "Specialized in React development and responsive web design for client projects.And Started taking on freelance web development projects and building client relationships.",
-  },
-  {
-    year: 2020,
-    title: "Started Advanced Frontend Developing",
-    position: "React",
-    description:
-      "Focused on learning React.js fundamentals and modern Typescript development practices.",
-  },
-  {
-    year: 2019,
-    title: "Started Coding Journey",
-    position: "Self-Taught",
-    description:
-      "Began learning web development through online courses and building personal projects.",
-  },
-];
+
 
 const stats = [
   { label: "Years Experience", value: "5+" },
@@ -184,7 +142,7 @@ export function AboutSection() {
               .sort((a, b) => a.year - b.year)
               .map((event, index) => (
                 <motion.div
-                  key={event.year}
+                  key={event.year.toString()+btoa(event.title.toString().toLowerCase())}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -216,6 +174,7 @@ export function AboutSection() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
+                    
                     transition={{ duration: 0.7, delay: 0.2 }}
                     className="flex-1"
                   >
