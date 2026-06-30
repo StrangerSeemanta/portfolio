@@ -86,7 +86,7 @@ export function AboutSection() {
                     <Link
                       download
                       target="_blank"
-                      href={"/cv/cv_shuvo_sarker.docx"}
+                      href={"/cv/cv_shuvo_sarker.pdf"}
                       className="flex justify-center items-center space-x-2 w-fit py-2 px-4 rounded-sm text-white bg-gradient-to-r from-[#00b4d8] to-[#7209b7] hover:from-[#00a2c7] hover:to-[#6508a6]"
                     >
                       <Download className="w-4 h-4 mr-2" />
